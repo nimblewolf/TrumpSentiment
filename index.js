@@ -44,9 +44,9 @@ app.get('/', function(req, res){
             if(globalAverage>0)globalSentiment = "positive";
             if(globalAverage<0)globalSentiment = "negative";
             if(globalAverage==0)globalSentiment = "neutral";
-            var tempPositive = arrayTweets.find(findPositive);
-            var tempNegative = arrayTweets.find(findNegative);
-            var tempNeutral = arrayTweets.find(findNeutral);
+            var tempPositive = findPositive();
+            var tempNegative = findNegative();
+            var tempNeutral = findNeutral();
                 positiveTweet = {
                     user : tempPositive.user,
                     tweet : tempPositive.tweet
@@ -60,7 +60,7 @@ app.get('/', function(req, res){
                     tweet : tempNeutral.tweet
                 }
             res.render('index.ejs', {
-                numTweets: numberTweets, 
+                numTweets: numberTweets,
                 overallSentiment: globalSentiment,
                 positiveSentiments: numPositive,
                 neutralSentiments: numNeutral,
@@ -83,13 +83,28 @@ app.listen(3100, function () {
 	console.log('Trump Sentiment listening...');
 });
 
-function findPositive(element){
-    return element.sentiment == "positive";
+function findPositive(){
+    var item;
+    do{
+        item = arrayTweets[Math.floor(Math.random()*arrayTweets.length)];
+    } while(item.sentiment !== "positive");
+    
+    return item;
 }
 function findNegative(element){
-    return element.sentiment == "negative";
+    var item;
+    do{
+        item = arrayTweets[Math.floor(Math.random()*arrayTweets.length)];
+    } while(item.sentiment !== "negative");
+    
+    return item;
 }
 
 function findNeutral(element){
-    return element.sentiment == "neutral";
+    var item;
+    do{
+        item = arrayTweets[Math.floor(Math.random()*arrayTweets.length)];
+    } while(item.sentiment !== "neutral");
+    
+    return item;
 }
