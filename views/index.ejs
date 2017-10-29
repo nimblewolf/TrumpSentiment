@@ -56,17 +56,38 @@
         <div class="ui segment">
                 <canvas id="myChart"></canvas>
         </div>
-        <div class="ui segment">
-            <h1>A positive Tweet about Trump:</h1>
-            <p>@<%= pTweet.user %> says: <%= pTweet.tweet %></p>
+        <h1>A positive Tweet about Trump:</h1>
+        <div class='ui stacked segments tweet'>
+            <div class='ui blue inverted segment'>
+                <label><i class='twitter icon'></i>
+                    @<%= pTweet.user %> says:
+                </label>
+            </div>
+            <div class='ui segment'>
+                <p><%= pTweet.tweet %></p>
+            </div>
         </div>
-        <div class="ui segment">
-            <h1>A negative Tweet about Trump:</h1>
-            <p>@<%= nTweet.user %> says: <%= nTweet.tweet %></p>
+        <h1>A negative Tweet about Trump:</h1>
+        <div class='ui stacked segments tweet'>
+            <div class='ui blue inverted segment'>
+                <label><i class='twitter icon'></i>
+                    @<%= nTweet.user %> says:
+                </label>
+            </div>
+            <div class='ui segment'>
+                <p><%= nTweet.tweet %></p>
+            </div>
         </div>
-        <div class="ui segment">
-            <h1>A neutral Tweet about Trump</h1>
-            <p>@<%= neuTweet.user %> says: <%= neuTweet.tweet %></p>
+        <h1>A neutral Tweet about Trump</h1>
+        <div class='ui stacked segments tweet' style="margin-bottom: 20px;">
+            <div class='ui blue inverted segment'>
+                <label><i class='twitter icon'></i>
+                    @<%= neuTweet.user %> says:
+                </label>
+            </div>
+            <div class='ui segment'>
+                <p><%= neuTweet.tweet %></p>
+            </div>
         </div>
     </div>
     <script>
