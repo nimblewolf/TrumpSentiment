@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trump Sentiment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+</head>
+<body>
+    <div class="ui fluid basic blue inverted center aligned segment topBar">
+        <h1>How the world feels about Trump</h1>
+    </div>
+    <div class="ui container">
+        <div class="ui segment">
+            <h2>The world's sentiment about trump today: <%= overallSentiment %></h2>
+            <div class="ui four statistics">
+                <div class="statistic">
+                    <div class="value">
+                        <%= numTweets %>
+                    </div>
+                    <div class="label">
+                        Total Trump <br> Tweets
+                    </div>
+                </div>
+                <div class="green statistic">
+                    <div class="value">
+                        <%= positiveSentiments %>
+                    </div>
+                    <div class="label">
+                        Positive <br> Tweets
+                    </div>
+                </div>
+                <div class="grey statistic">
+                    <div class="value">
+                        <%= neutralSentiments %>
+                    </div>
+                    <div class="label">
+                        Neutral <br> Tweets
+                    </div>
+                </div>
+                <div class="red statistic">
+                    <div class="value">
+                        <%= negativeSentiments %>
+                    </div>
+                    <div class="label">
+                        Negative <br> Tweets
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui segment">
+                <canvas id="myChart"></canvas>
+        </div>
+        <div class="ui segment">
+            <h1>A positive Tweet about Trump:</h1>
+            <p>@<%= pTweet.user %> says: <%= pTweet.tweet %></p>
+        </div>
+        <div class="ui segment">
+            <h1>A negative Tweet about Trump:</h1>
+            <p>@<%= nTweet.user %> says: <%= nTweet.tweet %></p>
+        </div>
+        <div class="ui segment">
+            <h1>A neutral Tweet about Trump</h1>
+            <p>@<%= neuTweet.user %> says: <%= neuTweet.tweet %></p>
+        </div>
+    </div>
+    <script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var numPositive = <%= positiveSentiments %>;
+    var numNeutral = <%= neutralSentiments %>;
+    var numNegative = <%= negativeSentiments %>;
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ["Positive Tweets", "Neutral Tweets", "Negative Tweets"],
+            datasets: [{
+                data: [numPositive, numNeutral, numNegative],
+                backgroundColor: [
+                    'rgba(33, 186, 69, 0.2)',
+                    'rgba(118, 118, 118, 0.2)',
+                    'rgba(219, 40, 40, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(33, 186, 69, 0.2)',
+                    'rgba(118, 118, 118, 0.2)',
+                    'rgba(219, 40, 40, 0.2)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Tweet Percentages'
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var dataset = data.datasets[tooltipItem.datasetIndex];
+                        var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+                        return previousValue + currentValue;
+                        });
+                        var currentValue = dataset.data[tooltipItem.index];
+                        var precentage = Math.floor(((currentValue/total) * 100)+0.5);         
+                        return precentage + "%";
+                    }
+                }
+            }
+        }
+    });
+    </script>
+</body>
+</html>

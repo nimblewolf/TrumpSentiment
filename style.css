@@ -1,0 +1,21 @@
+body{
+    /* background-color: black; */
+    /* margin-top: 20px; */
+    /* color: white; */
+}
+body .ui.basic.segment.topBar{
+    padding: 5px;
+}
+.ui.container{
+    /* background: white; */
+    height: 100%;
+}
+
+.ui.container .segment{
+    /* background-color: rgba(47, 47, 51, 1); */
+}
+
+
+.ui.container .segment .statistics .label{
+    /* color: white; */
+}
