@@ -78,6 +78,9 @@ app.get('/', function(req, res){
 app.get('/style.css', function(req, res){
     res.sendFile(__dirname + '/style.css');
 });
+app.get('*', function(req, res){ //routing for 404 errors
+    res.sendfile(__dirname + '/404.html');
+});
 
 app.listen(3100, function () {
 	console.log('Trump Sentiment listening...');
