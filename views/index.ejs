@@ -18,43 +18,51 @@
     <div class="ui container">
         <div class="ui segment">
             <h2>The world's sentiment about trump today: <%= overallSentiment %></h2>
-            <div class="ui four statistics">
-                <div class="statistic">
-                    <div class="value">
-                        <%= numTweets %>
-                    </div>
-                    <div class="label">
-                        Total Trump <br> Tweets
-                    </div>
-                </div>
-                <div class="green statistic">
-                    <div class="value">
-                        <%= positiveSentiments %>
-                    </div>
-                    <div class="label">
-                        Positive <br> Tweets
-                    </div>
-                </div>
-                <div class="grey statistic">
-                    <div class="value">
-                        <%= neutralSentiments %>
-                    </div>
-                    <div class="label">
-                        Neutral <br> Tweets
-                    </div>
-                </div>
-                <div class="red statistic">
-                    <div class="value">
-                        <%= negativeSentiments %>
-                    </div>
-                    <div class="label">
-                        Negative <br> Tweets
+        </div>
+        <div class="ui grid">
+            <div class="four wide stretched column">
+                <div class="ui segment">
+                    <div class="ui horizontal statistics">
+                        <div class="statistic">
+                            <div class="value">
+                                <%= numTweets %>
+                            </div>
+                            <div class="label">
+                                Total <br> Tweets
+                            </div>
+                        </div>
+                        <div class="green statistic">
+                            <div class="value">
+                                <%= positiveSentiments %>
+                            </div>
+                            <div class="label">
+                                Positive <br> Tweets
+                            </div>
+                        </div>
+                        <div class="grey statistic">
+                            <div class="value">
+                                <%= neutralSentiments %>
+                            </div>
+                            <div class="label">
+                                Neutral <br> Tweets
+                            </div>
+                        </div>
+                        <div class="red statistic">
+                            <div class="value">
+                                <%= negativeSentiments %>
+                            </div>
+                            <div class="label">
+                                Negative <br> Tweets
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="ui segment">
-                <canvas id="myChart"></canvas>
+            <div class="twelve wide column">
+                <div class="ui segment">
+                        <canvas id="myChart"></canvas>
+                </div>
+            </div>
         </div>
         <h1>A positive Tweet about Trump:</h1>
         <div class='ui stacked segments tweet'>

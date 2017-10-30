@@ -4,3 +4,8 @@ body .ui.basic.segment.topBar{
 .ui.container{
     height: 100%;
 }
+
+.ui.statistics .statistic{
+    /* margin-left: 5px;
+    margin-right: 5px; */
+}
